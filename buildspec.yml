@@ -21,7 +21,7 @@ phases:
   post_build:
     commands:
       - echo Running smoke checks
-      - test -f index.html
+      - test -f public/index.html
       - grep -q "Omotoyosi" index.html 
       - grep -q "DevOps" index.html
       - echo All checks passed
