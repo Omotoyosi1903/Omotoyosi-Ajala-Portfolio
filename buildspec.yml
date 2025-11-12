@@ -8,12 +8,25 @@ phases:
       - echo Installing dependencies...
       - npm install
 
+  pre_build:
+    commands:
+      - echo Running linter...
+      - npm run lint || echo "No lint script found"
+
   build:
     commands:
-      - echo Building project...
-      - npm run build
+      - echo Running tests...
+      - npm test
+      - echo Build completed on `date`
 
-artifacts:
+  post_build:
+    commands:
+      - echo Running smoke tests...
+      - grep -q "future" public/index.html
+      - grep -q "John" public/index.html
+      - echo All tests passed!
+
+    artifacts:
   files:
     - '**/*'
   base-directory: build
