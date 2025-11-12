@@ -21,11 +21,9 @@ phases:
   post_build:
     commands:
       - echo Running smoke checks
-      # file is at repo root, not in public
-      - test -f index.html || { echo "index.html not found"; exit 1; }
-      # check content that really exists
-      - grep -q "Omotoyosi" index.html   || { echo "Expected text Omotoyosi not found"; exit 1; }
-      - grep -q "DevOps" index.html      || { echo "Expected text DevOps not found"; exit 1; }
+      - test -f index.html
+      - grep -q "Omotoyosi" index.html 
+      - grep -q "DevOps" index.html
       - echo All checks passed
 
 artifacts:
